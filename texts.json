@@ -6,7 +6,7 @@
     "level": "A1",
     "description": "Een tekst over een kat die vastzit.",
     "description-en": "A text about a cat who is stuck.",
-    "content": "Op een dag zat een kat vast in een boom. </br>Dat maakte de kat verdrietig. </br>Een buurman probeerde de kat te helpen met een stoel. </br>De buurman kon niet bij de kat komen. </br>De buurman ging naar zijn huis en belde de brandweer. </br>Na 5 minuten kwam er een brandweerwagen. </br>De brandweer haalde de kat uit de boom. </br>De buurman was erg blij.",
+    "content": "Op een dag zat een kat in een boom. </br>De kat zat vast. </br>De kat was verdrietig. </br>Een buurman probeerde de kat te helpen </br>Hij gebruikte een stoel. </br>De buurman kon niet bij de kat komen. </br>De buurman ging naar zijn huis. </br> Hij belde de brandweer. </br>Na 5 minuten kwam een brandweerwagen. </br>De brandweer redde de kat uit de boom. </br>De buurman was erg blij.",
     "questions": [
       {
         "question": "Waar zat de kat?",
@@ -18,7 +18,7 @@
         "answer": "In een boom"
       },
       {
-        "question": "Wie heeft de kat gered?",
+        "question": "Wie redde de kat?",
         "options": [
           "De brandweer",
           "De buren",
@@ -91,7 +91,7 @@
     "level": "A2",
     "description": "Een verhaaltje over een bezoek aan de markt.",
     "description-en": "A small story about a visit to the market.",
-    "content": "Vandaag ging ik naar de markt in Amsterdam. </br>De kraampjes waren vol met verse producten zoals kaas, groenten, en vis. </br>Het was erg druk op het plein waar de markt was. </br>Er waren wel meer dan duizend bezoekers op het plein! </br>Na veel zoeken had ik het kraampje gevonden dat ik zocht. </br>Dat kraampje verkocht veel soorten fruit. </br>Ik kocht tien gigantische appels. </br>&ldquo;Deze appels zijn perfect!&rdquo; zei ik tegen mijzelf. </br>Ik ging terug naar mijn huis. </br>Thuis bakte ik een appeltaart in de oven. </br>De appeltaart was super lekker!",
+    "content": "Vandaag ging ik naar de markt in Amsterdam. </br>De kraampjes waren vol met verse producten zoals kaas, groenten en vis. </br>Het was erg druk op het plein waar de markt was. </br>Er waren wel meer dan duizend bezoekers op het plein! </br>Na veel zoeken had ik het kraampje gevonden dat ik zocht. </br>Dat kraampje verkocht veel soorten fruit. </br>Ik kocht tien gigantische appels. </br>&ldquo;Deze appels zijn perfect!&rdquo; zei ik tegen mijzelf. </br>Ik ging terug naar mijn huis. </br>Thuis bakte ik een appeltaart in de oven. </br>De appeltaart was super lekker!",
     "questions": [
       {
         "question": "Wat vond de verteller van de appels?",
@@ -227,5 +227,38 @@
         "note": "from verb(<i>sporten</i>(to sport)) or noun (sports)"
       }
     ]
+  },
+  {
+    "title": "🌊 Naar het Zwembad",
+    "vocabulary": [
+      {
+        "word": "zwembroek",
+        "translation": "Swimming pants",
+        "note": ""
+      },
+      {
+        "word": "badpak",
+        "translation": "*",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "title": "🐯 Dieren in de Dierentuin"
+  },
+  {
+    "title": "📖 Naar School"
+  },
+  {
+    "title": "🛏️ &ldquo;Ik wil niet naar bed!&rdquo;"
+  },
+  {
+    "title": "🎂 Mijn Verjaardag"
+  },
+  {
+    "title": "👑 Koningsdag"
+  },
+  {
+    "title": "🧳 Een Reisje naar Friesland"
   }
 ]

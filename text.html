@@ -92,8 +92,7 @@
                 score++;
               } else {
                 feedback.style.display = "block";
-                feedback.style.color = "red";
-                feedback.innerHTML = `❌ Fout. Jouw antwoord: <strong>${selected.value}</strong><br>✅ Juiste antwoord: <strong>${q.answer}</strong>`;
+                feedback.innerHTML = `<p style="color: red;">❌ Fout. Jouw antwoord: <strong>${selected.value}</strong></p><p style="color: green;">✅ Juiste antwoord: <strong>${q.answer}</strong></p>`;
               }
 
             });

@@ -1,0 +1,231 @@
+[
+  {
+    "id": 1,
+    "title": "🐈 De Kat in de Boom",
+    "title-en": "The Cat in the Tree",
+    "level": "A1",
+    "description": "Een tekst over een kat die vastzit.",
+    "description-en": "A text about a cat who is stuck.",
+    "content": "Op een dag zat een kat vast in een boom. </br>Dat maakte de kat verdrietig. </br>Een buurman probeerde de kat te helpen met een stoel. </br>De buurman kon niet bij de kat komen. </br>De buurman ging naar zijn huis en belde de brandweer. </br>Na 5 minuten kwam er een brandweerwagen. </br>De brandweer haalde de kat uit de boom. </br>De buurman was erg blij.",
+    "questions": [
+      {
+        "question": "Waar zat de kat?",
+        "options": [
+          "In een huis",
+          "In een boom",
+          "Op een stoel"
+        ],
+        "answer": "In een boom"
+      },
+      {
+        "question": "Wie heeft de kat gered?",
+        "options": [
+          "De brandweer",
+          "De buren",
+          "Niemand"
+        ],
+        "answer": "De brandweer"
+      },
+      {
+        "question": "Hoe voelde de buurman zich?",
+        "options": [
+          "Verdrietig",
+          "Blij",
+          "Boos"
+        ],
+        "answer": "Blij"
+      }
+    ],
+    "vocabulary": [
+      {
+        "word": "kat",
+        "translation": "cat",
+        "note": ""
+      },
+      {
+        "word": "boom",
+        "translation": "tree",
+        "note": ""
+      },
+      {
+        "word": "op een dag",
+        "translation": "one day",
+        "note": "This is used in a similiar way like: &ldquo;Once upon a time...&rdquo;"
+      },
+      {
+        "word": "buurman",
+        "translation": "neighbour",
+        "note": ""
+      },
+      {
+        "word": "stoel",
+        "translation": "chair",
+        "note": ""
+      },
+      {
+        "word": "verdrietig",
+        "translation": "sad",
+        "note": ""
+      },
+      {
+        "word": "brandweer",
+        "translation": "fire brigade",
+        "note": ""
+      },
+      {
+        "word": "brandweerwagen",
+        "translation": "fire truck",
+        "note": ""
+      },
+      {
+        "word": "blij",
+        "translation": "happy",
+        "note": ""
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "🛍️ Naar de Markt",
+    "title-en": "To the market",
+    "level": "A2",
+    "description": "Een verhaaltje over een bezoek aan de markt.",
+    "description-en": "A small story about a visit to the market.",
+    "content": "Vandaag ging ik naar de markt in Amsterdam. </br>De kraampjes waren vol met verse producten zoals kaas, groenten, en vis. </br>Het was erg druk op het plein waar de markt was. </br>Er waren wel meer dan duizend bezoekers op het plein! </br>Na veel zoeken had ik het kraampje gevonden dat ik zocht. </br>Dat kraampje verkocht veel soorten fruit. </br>Ik kocht tien gigantische appels. </br>&ldquo;Deze appels zijn perfect!&rdquo; zei ik tegen mijzelf. </br>Ik ging terug naar mijn huis. </br>Thuis bakte ik een appeltaart in de oven. </br>De appeltaart was super lekker!",
+    "questions": [
+      {
+        "question": "Wat vond de verteller van de appels?",
+        "options": [
+          "Ze waren te klein.",
+          "Ze waren perfect.",
+          "Ze waren niet lekker."
+        ],
+        "answer": "Ze waren perfect."
+      },
+      {
+        "question": "Waar was de markt?",
+        "options": [
+          "Thuis",
+          "In Amsterdam",
+          "In Rotterdam"
+        ],
+        "answer": "In Amsterdam"
+      },
+      {
+        "question": "Hoeveel mensen waren op het plein?",
+        "options": [
+          "Tien",
+          "Honderd",
+          "Duizend of meer"
+        ],
+        "answer": "Duizend of meer"
+      },
+      {
+        "question": "Wat kocht de verteller op de markt?",
+        "options": [
+          "Kaas",
+          "Brood",
+          "Appels"
+        ],
+        "answer": "Appels"
+      }
+    ],
+    "vocabulary": [
+      {
+        "word": "markt",
+        "translation": "market",
+        "note": ""
+      },
+      {
+        "word": "kraampjes",
+        "translation": "stalls",
+        "note": "A small table or stand where someone sells things. They are often seen at markets. They are like tiny shops, but outside and smaller."
+      },
+      {
+        "word": "druk",
+        "translation": "busy",
+        "note": "Busy with people. Crowded."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "🧑 Ik ben Fabian",
+    "title-en": "I am Fabian",
+    "level": "0",
+    "description": "Een kort verhaal over wie Fabian is.",
+    "description-en": "A short story about who Fabian is.",
+    "content": "Ik ben Fabian. </br>Ik ben 20 jaar oud. </br>Ik wil Nederlands leren. </br>Ik woon 15 jaar in Nederland. </br>Ik houd van sporten.",
+    "questions": [
+      {
+        "question": "Wat wil Fabian leren?",
+        "options": [
+          "Nederlands",
+          "Sporten"
+        ],
+        "answer": "Nederlands"
+      },
+      {
+        "question": "Hoe oud is Fabian?",
+        "options": [
+          "20 jaar",
+          "15 jaar",
+          "5 jaar"
+        ],
+        "answer": "20 jaar"
+      }
+    ],
+    "vocabulary": [
+      {
+        "word": "Ik",
+        "translation": "I",
+        "note": "subject pronoun"
+      },
+      {
+        "word": "ben",
+        "translation": "am",
+        "note": "from verb <i>zijn</i> (to be)"
+      },
+      {
+        "word": "jaar",
+        "translation": "year",
+        "note": "singular (plural is <i>jaren</i>)"
+      },
+      {
+        "word": "oud",
+        "translation": "old",
+        "note": "age-related adjective"
+      },
+      {
+        "word": "wil",
+        "translation": "want",
+        "note": "from verb <i>willen</i> (to want)"
+      },
+      {
+        "word": "leren",
+        "translation": "to learn",
+        "note": ""
+      },
+      {
+        "word": "Nederlands",
+        "translation": "Dutch (language)",
+        "note": "from verb <i>willen</i> (to want)"
+      },
+      {
+        "word": "woon",
+        "translation": "live",
+        "note": "from verb <i>Wonen</i> (to live)"
+      },
+      {
+        "word": "houd van",
+        "translation": "like (to love)",
+        "note": "Fixed expression with hobbies"
+      },
+      {
+        "word": "sporten",
+        "translation": "sport(s)",
+        "note": "from verb(<i>sporten</i>(to sport)) or noun (sports)"
+      }
+    ]
+  }
+]

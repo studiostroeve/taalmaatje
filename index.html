@@ -10,7 +10,7 @@
 
 <body>
   <h1 class="index-title">📚 Nederlandse Leesteksten</h1>
-  <h2 class="index-title-en">📚 Dutch Reading Texts</h2>
+  <h2 class="index-title-en">Dutch Reading Texts</h2>
 
   <div class="filters">
     <label for="levelFilter">Filter:</label>
@@ -34,10 +34,11 @@
       texts
         .filter(text => filter === "all" || text.level === filter)
         .forEach(text => {
-          const card = document.createElement("a");
-          card.href = `text.html?id=${text.id}`;
-          card.className = "text-card";
-          card.innerHTML = `
+          if (text.id) {
+            const card = document.createElement("a");
+            card.href = `text.html?id=${text.id}`;
+            card.className = "text-card";
+            card.innerHTML = `
             <h3>${text.title}</h3>
             <h4>${text["title-en"]}</h4>
             <p class="level">Niveau: ${text.level}</p>
@@ -45,7 +46,8 @@
             <p class="description">${text.description}</p>
             <p class="description-en">${text["description-en"]}</p>
           `;
-          textGrid.appendChild(card);
+            textGrid.appendChild(card);
+          }
         });
     }
 

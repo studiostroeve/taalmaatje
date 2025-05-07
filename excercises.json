@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "title": "👋 Hallo!",
+        "title-en": "Hello!",
+        "level": "0",
+        "description": "Een oefening over &rdquo;hallo&ldquo; zeggen.",
+        "description-en": "An excercise about saying &rdquo;hello&ldquo;.",
+        "slides": [
+            {
+                "type": "information",
+                "content": "Er zijn veel manier waarop je iets kan zeggen in het Nederlands."
+            },
+            {
+                "type": "question",
+                "question": "Wat zeg je als je iemand groet?",
+                "question-translate": "What do you say when you greet someone?",
+                "options": [
+                    "Hallo",
+                    "Tot ziens",
+                    "Dankjewel"
+                ],
+                "answer": "Hallo"
+            }
+        ]
+    }
+]

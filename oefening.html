@@ -22,38 +22,33 @@
       </div>
     </div>
   </div>
-  <script>
+  <!--<script>
     const params = new URLSearchParams(window.location.search);
-    const textId = params.get("id");
+    const excerciseId = params.get("id");
 
-    fetch("texts.json")
+    fetch("excercises.json")
       .then(res => res.json())
       .then(texts => {
-        const text = texts.find(t => t.id == textId);
-        if (text) {
-          document.getElementById("text-title").textContent = text.title;
-          document.getElementById("text-level").textContent = `Niveau: ${text.level}`;
-          document.getElementById("text-level-en").textContent = `Level: ${text.level}`;
-          document.getElementById("text-description").textContent = text.description;
-          document.getElementById("text-description-en").textContent = text["description-en"];
-          document.getElementById("text-content").innerHTML = `
-            <p><strong>Volledige tekst (Full text):</strong></p>
-            <div class="text-wrapper-box"><p>${text.content}</p></div>
-          `;
+        const excercise = texts.find(t => t.id == excerciseId);
+        if (excercise) {
+          document.getElementById("text-title").textContent = excercise.title;
+          document.getElementById("text-level").textContent = `Niveau: ${excercise.level}`;
+          document.getElementById("text-level-en").textContent = `Level: ${excercise.level}`;
+          document.getElementById("text-description").innerHTML = excercise.description;
+          document.getElementById("text-description-en").innerHTML = excercise["description-en"];
         } else {
           document.getElementById("text-title").textContent = "Tekst niet gevonden";
           document.getElementById("text-content").textContent = "Deze tekst bestaat niet.";
         }
 
-        if (text.questions && text.questions.length > 0) {
-          const quizContainer = document.createElement("div");
-          quizContainer.innerHTML = `<h3>📝 Begrijpend Lezen</h3><h4>📝 Comprehensive Reading</h4>`;
-          quizContainer.className = "quiz-container"
+        if (excercise.slides  && excercise.slides.length > 0) {
+          const slideContainer = document.createElement("div");
+          slideContainer.className = "slide-container"
 
           const form = document.createElement("form");
           const userAnswers = [];
 
-          text.questions.forEach((q, i) => {
+          excercise.slides.forEach((s, i) => {
             const qDiv = document.createElement("div");
             qDiv.innerHTML = `
       <p><strong>${i + 1}. ${q.question}</strong></p>
@@ -104,33 +99,8 @@
           quizContainer.appendChild(form);
           document.querySelector(".text-main-content").appendChild(quizContainer);
         }
-
-        console.log("About to init vocablist")
-
-        if (text.vocabulary && text.vocabulary.length > 0) {
-          const vocabContainer = document.createElement("div");
-          vocabContainer.innerHTML = `<h3>📃 Woordenlijst</h3><h4>📃 Word-list</h4>`;
-          vocabContainer.className = "vocab-container"
-
-          const titleWordDiv = document.createElement("div");
-          titleWordDiv.className = "vocab-entry"
-          titleWordDiv.innerHTML = `<div class="word-nl"><b>Nederlands (Dutch)</b></div>
-            <div class="word-en"><b>Engels (English)</b></div>
-            <div class="word-note"><b>Notities (Notes)</b></div>`;
-          vocabContainer.appendChild(titleWordDiv);
-
-          text.vocabulary.forEach((wordData, i) => {
-            const wordDiv = document.createElement("div");
-            wordDiv.className = "vocab-entry"
-            wordDiv.innerHTML = `<div class="word-nl">${wordData.word}</div>
-            <div class="word-en">${wordData.translation}</div>
-            <div class="word-note">${wordData.note}</div>`;
-            vocabContainer.appendChild(wordDiv);
-          });
-          document.querySelector(".text-main-content").appendChild(vocabContainer);
-        }
       });
-  </script>
+  </script>-->
 </body>
 
 </html>

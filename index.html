@@ -4,64 +4,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nederlandse Teksten</title>
+  <title>LanguageBuddy</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <h1 class="index-title">📚 Nederlandse Leesteksten</h1>
-  <h2 class="index-title-en">Dutch Reading Texts</h2>
-
-  <div class="filters">
-    <label for="levelFilter">Filter:</label>
-    <select id="levelFilter">
-      <option value="all">Alle (All)</option>
-      <option value="0">0 (Beginner)</option>
-      <option value="A1">A1</option>
-      <option value="A2">A2</option>
-    </select>
+  <div class="index-main">
+    <div class="index-bg"></div>
+    <div id="welcome-message"></div>
+    <div class="index-title-wrapper">
+      <a href="index.html">
+        <h1 class="index-site-title">LanguageBuddy.nl</h1>
+      </a>
+      <div class="index-links">
+        <a href="leesteksten.html" class="link">
+          <div class="link-nl">
+            Leesteksten
+          </div>
+          <div class="link-en">
+            Reading Texts
+          </div>
+        </a>
+        <a href="oefeningen.html" class="link">
+          <div class="link-nl">
+            Oefeningen
+          </div>
+          <div class="link-en">
+            Exercises
+          </div>
+        </a>
+      </div>
+    </div>
+    <div id="latest-text"></div>
   </div>
-
-  <main id="text-grid"></main>
-
+  <div id="flag-overlay">
+    <div class="stripe red"></div>
+    <div class="stripe white"></div>
+    <div class="stripe blue"></div>
+  </div>
   <script>
-    const textGrid = document.getElementById("text-grid");
-    const levelFilter = document.getElementById("levelFilter");
-    let texts = [];
 
-    function renderTexts(filter = "all") {
-      textGrid.innerHTML = "";
-      texts
-        .filter(text => filter === "all" || text.level === filter)
-        .forEach(text => {
-          if (text.id) {
-            const card = document.createElement("a");
-            card.href = `text.html?id=${text.id}`;
-            card.className = "text-card";
-            card.innerHTML = `
-            <h3>${text.title}</h3>
-            <h4>${text["title-en"]}</h4>
-            <p class="level">Niveau: ${text.level}</p>
-            <p class="level-en">Level: ${text.level}</p>
-            <p class="description">${text.description}</p>
-            <p class="description-en">${text["description-en"]}</p>
-          `;
-            textGrid.appendChild(card);
-          }
-        });
-    }
+    // WELKOMST BERICHT
+    const greetingElem = document.getElementById('welcome-message');
+    const hour = new Date().getHours();
+    let greeting = "Welkom!";
+
+    if (hour < 12) greeting = "Goedemorgen! ☀️";
+    else if (hour < 18) greeting = "Goedemiddag! 🌤️";
+    else greeting = "Goedenavond! 🌙";
+
+    greetingElem.textContent = greeting;
 
     fetch("texts.json")
       .then(res => res.json())
       .then(data => {
-        texts = data;
-        renderTexts();
+        const latestEntry = data.reduce((max, item) =>
+          item.id > max.id ? item : max
+        );
+        //DEBUG
+        console.log(latestEntry)
+        //*****
+        const latestTextElement = document.getElementById("latest-text")
+        latestTextElement.innerHTML = `
+            <h1>Meest recente tekst</h1>
+            <h2>Most recent text</h2>
+            <a href="text.html?id=${latestEntry}" id="latest-text-wrapper">
+            <h3>${latestEntry.title}</h3>
+            <h4>${latestEntry["title-en"]}</h4>
+            <p class="level">Niveau: ${latestEntry.level}</p>
+            <p class="level-en">Level: ${latestEntry.level}</p>
+            <p class="description">${latestEntry.description}</p>
+            <p class="description-en">${latestEntry["description-en"]}</p>
+            </a>
+          `;
       });
 
-    levelFilter.addEventListener("change", () => {
-      renderTexts(levelFilter.value);
+
+    // EASTER EGG
+    let buffer = '';
+    const target = 'nederland';
+    document.addEventListener('keydown', (e) => {
+      buffer += e.key.toLowerCase();
+      buffer = buffer.slice(-target.length);
+      if (buffer === target) {
+        const el = document.getElementById('flag-overlay');
+        el.classList.remove('show-flag'); // Reset if needed
+        void el.offsetWidth; // Force reflow
+        el.classList.add('show-flag');
+
+        // Remove class after animation ends (so it can trigger again)
+        setTimeout(() => el.classList.remove('show-flag'), 3500);
+      }
     });
   </script>
+
+  </script>
+
 </body>
 
 </html>

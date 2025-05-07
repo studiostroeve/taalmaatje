@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oefeningen</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="index.html">
+            <h1 class="site-title">LanguageBuddy.nl</h1>
+        </a>
+        <div class="links">
+            <a href="leesteksten.html" class="link">
+                <div class="link-nl">
+                    Leesteksten
+                </div>
+                <div class="link-en">
+                    Reading Texts
+                </div>
+            </a>
+            <a href="oefeningen.html" class="link">
+                <div class="link-nl">
+                    Oefeningen
+                </div>
+                <div class="link-en">
+                    Exercises
+                </div>
+            </a>
+    </nav>
+    <div class="page-main">
+        <h1 class="page-title">📝 Oefeningen</h1>
+        <h2 class="page-title-en">Excercises</h2>
+
+        <div class="filters">
+            <label for="levelFilter">Filter:</label>
+            <select id="levelFilter">
+                <option value="all">Alle (All)</option>
+                <option value="0">0 (Beginner)</option>
+                <option value="A1">A1</option>
+                <option value="A2">A2</option>
+            </select>
+        </div>
+
+        <main id="text-grid"></main>
+    </div>
+    <script>
+        const textGrid = document.getElementById("text-grid");
+        const levelFilter = document.getElementById("levelFilter");
+        let texts = [];
+
+        function renderExcercises(filter = "all") {
+            textGrid.innerHTML = "";
+            texts
+                .filter(text => filter === "all" || text.level === filter)
+                .forEach(text => {
+                    if (text.id) {
+                        const card = document.createElement("a");
+                        card.href = `oefening.html?id=${text.id}`;
+                        card.className = "text-card";
+                        card.innerHTML = `
+            <h3>${text.title}</h3>
+            <h4>${text["title-en"]}</h4>
+            <p class="level">Niveau: ${text.level}</p>
+            <p class="level-en">Level: ${text.level}</p>
+            <p class="description">${text.description}</p>
+            <p class="description-en">${text["description-en"]}</p>
+          `;
+                        textGrid.appendChild(card);
+                    }
+                });
+        }
+
+        fetch("excercises.json")
+            .then(res => res.json())
+            .then(data => {
+                texts = data;
+                renderExcercises();
+            });
+
+        levelFilter.addEventListener("change", () => {
+            renderExcercises(levelFilter.value);
+        });
+    </script>
+</body>
+
+</html>

@@ -14,7 +14,7 @@
             <h1 class="site-title">LanguageBuddy.nl</h1>
         </a>
         <div class="links">
-            <a href="leesteksten.html" class="link">
+            <a href="leesteksten.html" class="link leesteksten">
                 <div class="link-nl">
                     Leesteksten
                 </div>
@@ -22,7 +22,7 @@
                     Reading Texts
                 </div>
             </a>
-            <a href="oefeningen.html" class="link">
+            <a href="oefeningen.html" class="link oefeningen">
                 <div class="link-nl">
                     Oefeningen
                 </div>
@@ -30,11 +30,21 @@
                     Exercises
                 </div>
             </a>
+            <a href="over.html" class="link over">
+                <div class="link-nl">
+                    Over
+                </div>
+                <div class="link-en">
+                    About
+                </div>
+            </a>
+        </div>
     </nav>
     <div class="page-main">
-        <h1 class="page-title">📝 Oefeningen</h1>
-        <h2 class="page-title-en">Excercises</h2>
-
+        <div class="title-wrapper oefeningen">
+            <h1 class="page-title">📝 Oefeningen</h1>
+            <h2 class="page-title-en">Exercises</h2>
+        </div>
         <div class="filters">
             <label for="levelFilter">Filter:</label>
             <select id="levelFilter">
@@ -52,14 +62,14 @@
         const levelFilter = document.getElementById("levelFilter");
         let exercises = [];
 
-        function renderExcercises(filter = "all") {
+        function renderExercises(filter = "all") {
             textGrid.innerHTML = "";
             exercises
                 .filter(exercise => filter === "all" || exercise.level === filter)
                 .forEach(exercise => {
                     if (exercise.id) {
                         const card = document.createElement("a");
-                        card.href = `oefening.html?id=${exercise.id}&slide=0`;
+                        card.href = `oefening.html?id=${exercise.id}&slide=start`;
                         card.className = "text-card";
                         card.innerHTML = `
             <h3>${exercise.title}</h3>
@@ -78,11 +88,11 @@
             .then(res => res.json())
             .then(data => {
                 exercises = data;
-                renderExcercises();
+                renderExercises();
             });
 
         levelFilter.addEventListener("change", () => {
-            renderExcercises(levelFilter.value);
+            renderExercises(levelFilter.value);
         });
     </script>
 </body>

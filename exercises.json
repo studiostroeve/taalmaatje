@@ -22,6 +22,17 @@
                     "Dankjewel"
                 ],
                 "answer": "Hallo"
+            },
+            {
+                "type": "question",
+                "question": "Hoe dank je iemand?",
+                "question-translate": "How do you thank someone?",
+                "options": [
+                    "Tot ziens",
+                    "Goedemorgen",
+                    "Dankjewel"
+                ],
+                "answer": "Dankjewel"
             }
         ]
     }

@@ -9,73 +9,175 @@
 </head>
 
 <body>
-  <button class="back-btn" onclick="window.history.back()">⬅️ Terug (Back)</button>
+  <button class="back-btn" onclick="goToPage('oefeningen.html')">
+    <h5>⬅️Stop oefening</h5></br>
+    <h6>Stop exercise</h6>
+  </button>
   <div class="text-main">
     <div class="main-content">
       <div id="question-wrapper">
-        <h1 id="question-title">Vraag niet gevonden!</h1>
-        <h2 id="question-title-en">Question not found!</h2>
-        <p class="level" id="question-level"></p>
-        <p class="level-en" id="question-level-en"></p>
-        <p class="description" id="question-description"></p>
-        <p class="description-en" id="question-description-en"></p>
-        <div id="question-content"></div>
-        <a class="a-button" href="index.html" id="next-slide">
-          <h5>Ga terug naar de hoofpagina</h5>
-          <h6>Go back to the homepage</h6>
-        </a>
+        <div class="question-info-wrapper">
+          <h1 id="question-title">Vraag niet gevonden!</h1>
+          <h2 id="question-title-en">Question not found!</h2>
+          <p class="level" id="question-level"></p>
+          <p class="level-en" id="question-level-en"></p>
+          <p class="description" id="question-description"></p>
+          <p class="description-en" id="question-description-en"></p>
+        </div>
+        <div id="question-content">
+          <a href="index.html" class="a-button" id="next-slide">
+            <h5>Ga terug naar de hoofpagina</h5>
+            <h6>Go back to the homepage</h6>
+          </a>
+        </div>
+
       </div>
     </div>
   </div>
   <script>
+    function goToPage(pageName) {
+      window.location.href = pageName
+    }
+
     const params = new URLSearchParams(window.location.search);
     const exerciseId = params.get("id");
-    const slideId = params.get("slide");
+    const slideParam = params.get("slide");
+    const nextButton = document.getElementById("next-slide")
 
     fetch("exercises.json")
       .then(res => res.json())
       .then(exercises => {
         const exercise = exercises.find(t => t.id == exerciseId);
-        const slide = exercise.slides[slideId]
 
-        if (!slide) { return console.error("Slide not found!"); }
-        /* DEBUGGING */
-        console.log(exercise)
-        console.log(slide)
+        if (exercise) {
+          if (slideParam == "start") {
+            sessionStorage.setItem("score", "0");
+            sessionStorage.setItem("total", exercise.slides.filter(s => s.type === "question").length);
+            nextButton.innerHTML = `<h5>Start oefening</h5><h6>Start exercise</h6>`
+            nextButton.href = `oefening.html?id=${exerciseId}&slide=${0}`;
 
-        if (slideId <= 0) {
-          /* UPDATE BUTTON */
-          document.getElementById("next-slide").innerHTML = `<h5>Start oefening</h5><h6>Start exercise</h6>`
-          document.getElementById("next-slide").href = `oefening.html?id=${exerciseId}&slide=${Number(slideId) + 1}`;
+            document.getElementById("question-title").textContent = exercise.title;
+            document.getElementById("question-title-en").textContent = exercise["title-en"];
+            document.getElementById("question-level").textContent = `Niveau: ${exercise.level}`;
+            document.getElementById("question-level-en").textContent = `Level: ${exercise.level}`;
+            document.getElementById("question-description").innerHTML = exercise.description;
+            document.getElementById("question-description-en").innerHTML = exercise["description-en"];
+          } else if (slideParam > (exercise.slides.length - 1)) {
 
-          document.getElementById("question-title").textContent = exercise.title;
-          document.getElementById("question-title-en").textContent = exercise["title-en"];
-          document.getElementById("question-level").textContent = `Niveau: ${exercise.level}`;
-          document.getElementById("question-level-en").textContent = `Level: ${exercise.level}`;
-          document.getElementById("question-description").innerHTML = exercise.description;
-          document.getElementById("question-description-en").innerHTML = exercise["description-en"];
-        } else {
-          /* UPDATE BUTTON */
-          document.getElementById('question-wrapper').innerHTML = `<h1 id="question-title">Vraag niet gevonden!</h1>
-        <h2 id="question-title-en">Question not found!</h2>
-          <div id="question-content"></div>
-          <a class="a-button" href="oefening.html?id=${exerciseId}&slide=${Number(slideId) + 1}" id="next-slide">
-         <h5>Volgende</h5><h6>Next</h6>
-        </a>`
-          const qDiv = document.createElement("div");
-          qDiv.style.paddingBottom = "2rem"
-          qDiv.innerHTML = `
-      <p><strong>Vraag ${Number(slideId) + 1}. ${slide.question}</strong></p>
+            nextButton.innerHTML = `<h5>Afronden</h5><h6></h6>`
+            nextButton.href = `oefeningen.html`;
+
+            const score = sessionStorage.getItem("score") || "0";
+            const total = sessionStorage.getItem("total") || "0";
+            const answers = JSON.parse(sessionStorage.getItem("answers") || "{}");
+
+            const resultDiv = document.createElement("div");
+            resultDiv.innerHTML = `<h3>📊 Resultaat</h3><p>Je hebt ${score} van de ${total} vragen goed.</p><hr style="color: #00000055;"/>`;
+
+            Object.keys(answers).forEach(key => {
+              const { question, userAnswer, correctAnswer } = answers[key];
+              const correct = userAnswer === correctAnswer;
+              const entry = document.createElement("div");
+              entry.innerHTML = `
+      <p><strong>Vraag ${Number(key) + 1}: ${question}</strong></p>
+      <p>Jouw antwoord: <span style="color: ${correct ? 'green' : 'red'};">${userAnswer}</span></p>
+      ${!correct ? `<p>Correct antwoord: <span style="color: green;">${correctAnswer}</span></p>` : ""}
+      <hr style="color: #00000055;"/>
+    `;
+              resultDiv.appendChild(entry);
+            });
+
+            document.getElementById("question-content").insertBefore(resultDiv, nextButton);
+            document.querySelector(".question-info-wrapper").remove();
+          } else {
+            const slide = exercise.slides[slideParam]
+            if (!slide) { return console.error("Slide not found!"); }
+
+            if (slide.type == "information") {
+
+              document.querySelector(".question-info-wrapper").remove()
+              nextButton.href = `oefening.html?id=${exerciseId}&slide=${Number(slideParam) + 1}`
+              nextButton.innerHTML = `<h5>Volgende</h5>
+            <h6>Next</h6>`
+
+              const iDiv = document.createElement("div");
+              iDiv.style.paddingBottom = "2rem"
+              iDiv.innerHTML = `
+      <p><strong>${slide.title}</strong></p>
+      ${slide.content}
+    `;
+              document.getElementById("question-content").insertBefore(iDiv, nextButton);
+
+            } else if (slide.type == "question") {
+
+              const allQuestions = exercise.slides.filter(slideItem => slideItem.type === "question");
+              const totalQuestions = allQuestions.length;
+
+              const questionIndex = allQuestions.findIndex(q => q.question === slide.question) + 1;
+
+              document.querySelector(".question-info-wrapper").remove()
+              nextButton.href = ``
+              nextButton.innerHTML = `<h5>Volgende</h5>
+            <h6>Next</h6>`
+              const qDiv = document.createElement("div");
+              qDiv.style.paddingBottom = "2rem"
+              qDiv.innerHTML = `
+      <p><strong>
+        <div class="tooltip">Vraag ${questionIndex}. ${slide.question}
+  <span class="tooltiptext">Question ${questionIndex}. ${slide["question-translate"]}</span>
+</div>
+        
+        </strong></p>
       ${slide.options.map(opt => `
         <label>
-          <input type="radio" name="q${slideId}" value="${opt}" />
+          <input type="radio" name="q${slideParam}" value="${opt}" />
           ${opt}
         </label><br/>
       `).join('')}
-      <p class="feedback" id="feedback-${slideId}" style="display: none;"></p>
+      <p class="feedback" id="feedback-${slideParam}" style="display: none;"></p>
     `;
-          document.getElementById("question-content").appendChild(qDiv);
+              document.getElementById("question-content").insertBefore(qDiv, nextButton);
+            }
+          }
+          document.getElementById("next-slide").addEventListener("click", (e) => {
+            console.log("click!")
+            const currentSlide = exercise.slides[slideParam];
 
+            if (currentSlide?.type === "question") {
+              e.preventDefault();
+
+              const selected = document.querySelector(`input[name="q${slideParam}"]:checked`);
+              const feedback = document.getElementById(`feedback-${slideParam}`);
+              if (!selected) {
+                feedback.style.display = "block";
+                feedback.style.color = "orange";
+                feedback.textContent = "⚠️ Geen antwoord gekozen.";
+                return;
+              }
+
+              const isCorrect = selected.value === currentSlide.answer;
+              if (isCorrect) {
+                let score = Number(sessionStorage.getItem("score") || "0");
+                sessionStorage.setItem("score", score + 1);
+              }
+
+              let answers = JSON.parse(sessionStorage.getItem("answers") || "{}");
+              answers[slideParam] = {
+                userAnswer: selected.value,
+                correctAnswer: currentSlide.answer,
+                question: currentSlide.question
+              };
+              sessionStorage.setItem("answers", JSON.stringify(answers));
+
+              document.querySelectorAll(`input[name="q${slideParam}"]`).forEach(input => input.disabled = true);
+
+
+              window.location.href = `oefening.html?id=${exerciseId}&slide=${Number(slideParam) + 1}`;
+            }
+
+          });
+        } else {
+          window.location.href = `index.html`
         }
       });
   </script>

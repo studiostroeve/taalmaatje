@@ -42,10 +42,12 @@
             document.getElementById("question-description").innerHTML = exercise.description;
             document.getElementById("question-description-en").innerHTML = exercise["description-en"];
           } else {
+            console.log(slide.type)
+            if (slide.type == "information") {
+              
 
 
-
-            if (exercise.slides && exercise.slides.length > 0) {
+            } else if (slide.type == "question") {
               const slideContainer = document.createElement("div");
               slideContainer.className = "slide-container"
               if (slide.type == "question") {
@@ -112,10 +114,6 @@
               }
 
               document.querySelector(".main-content").appendChild(slideContainer);
-
-            } else {
-              document.getElementById("question-title").textContent = "Vraag niet gevonden";
-              document.getElementById("question-content").textContent = "Question not found!";
             }
           }
         }

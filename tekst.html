@@ -10,7 +10,7 @@
 <body>
   <button class="back-btn" onclick="window.history.back()">⬅️ Terug (Back)</button>
   <div class="text-main">
-    <div class="text-main-content">
+    <div class="main-content">
       <div id="text-wrapper">
         <h1 id="text-title"></h1>
         <h1 id="text-title-en"></h1>
@@ -102,7 +102,7 @@
 
           form.appendChild(checkBtn);
           quizContainer.appendChild(form);
-          document.querySelector(".text-main-content").appendChild(quizContainer);
+          document.querySelector(".main-content").appendChild(quizContainer);
         }
 
         if (text.vocabulary && text.vocabulary.length > 0) {
@@ -125,7 +125,7 @@
             <div class="word-note">${wordData.note}</div>`;
             vocabContainer.appendChild(wordDiv);
           });
-          document.querySelector(".text-main-content").appendChild(vocabContainer);
+          document.querySelector(".main-content").appendChild(vocabContainer);
         }
       });
   </script>

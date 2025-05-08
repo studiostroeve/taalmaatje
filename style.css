@@ -117,7 +117,7 @@ nav {
   justify-self: center;
 }
 
-.text-main-content {
+.main-content {
   display: grid;
   gap: 2rem;
   max-width: 100vw;
@@ -126,6 +126,20 @@ nav {
 
 #text-content {
   margin-top: 2rem;
+}
+
+#question-content {
+  margin-top: 2rem;
+}
+
+#question-wrapper {
+  display: grid;
+  border: 1px solid #ccc;
+  padding: 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  justify-items: center;
 }
 
 .text-wrapper-box {
@@ -161,6 +175,17 @@ h3 {
 h4 {
   color: #a8a8a8;
   font-size: 1.2rem;
+  margin: 0;
+}
+
+h5 {
+  color: #444;
+  font-size: 1rem;
+  margin: 0;
+}
+h6 {
+  color: #a8a8a8;
+  font-size: 1rem;
   margin: 0;
 }
 
@@ -259,7 +284,9 @@ h4 {
 }
 
 button,
-select {
+select,
+.a-button {
+  display: grid;
   padding: 1rem;
   cursor: pointer;
   font-weight: bold;
@@ -267,17 +294,14 @@ select {
   color: black;
   border: none;
   background: transparent;
-}
-
-button,
-select {
   border: 1px solid #ccc;
-  padding: 1rem;
   border-radius: 8px;
   margin-bottom: 1rem;
   text-decoration: none;
-  color: inherit;
   transition: box-shadow 0.2s;
+  justify-content: center;
+  justify-items: center;
+  min-width: 100px;
 }
 
 button:hover,

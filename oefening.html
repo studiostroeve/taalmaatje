@@ -7,100 +7,78 @@
   <title>Tekst Bekijken</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <button class="back-btn" onclick="window.history.back()">⬅️ Terug (Back)</button>
   <div class="text-main">
-    <div class="text-main-content">
-      <div id="text-wrapper">
-        <h1 id="text-title"></h1>
-        <h1 id="text-title-en"></h1>
-        <p class="level" id="text-level"></p>
-        <p class="level-en" id="text-level-en"></p>
-        <p class="description" id="text-description"></p>
-        <p class="description-en" id="text-description-en"></p>
-        <div id="text-content"></div>
+    <div class="main-content">
+      <div id="question-wrapper">
+        <h1 id="question-title">Vraag niet gevonden!</h1>
+        <h2 id="question-title-en">Question not found!</h2>
+        <p class="level" id="question-level"></p>
+        <p class="level-en" id="question-level-en"></p>
+        <p class="description" id="question-description"></p>
+        <p class="description-en" id="question-description-en"></p>
+        <div id="question-content"></div>
+        <a class="a-button" href="index.html" id="next-slide">
+          <h5>Ga terug naar de hoofpagina</h5>
+          <h6>Go back to the homepage</h6>
+        </a>
       </div>
     </div>
   </div>
-  <!--<script>
+  <script>
     const params = new URLSearchParams(window.location.search);
-    const excerciseId = params.get("id");
+    const exerciseId = params.get("id");
+    const slideId = params.get("slide");
 
-    fetch("excercises.json")
+    fetch("exercises.json")
       .then(res => res.json())
-      .then(texts => {
-        const excercise = texts.find(t => t.id == excerciseId);
-        if (excercise) {
-          document.getElementById("text-title").textContent = excercise.title;
-          document.getElementById("text-level").textContent = `Niveau: ${excercise.level}`;
-          document.getElementById("text-level-en").textContent = `Level: ${excercise.level}`;
-          document.getElementById("text-description").innerHTML = excercise.description;
-          document.getElementById("text-description-en").innerHTML = excercise["description-en"];
+      .then(exercises => {
+        const exercise = exercises.find(t => t.id == exerciseId);
+        const slide = exercise.slides[slideId]
+
+        if (!slide) { return console.error("Slide not found!"); }
+        /* DEBUGGING */
+        console.log(exercise)
+        console.log(slide)
+
+        if (slideId <= 0) {
+          /* UPDATE BUTTON */
+          document.getElementById("next-slide").innerHTML = `<h5>Start oefening</h5><h6>Start exercise</h6>`
+          document.getElementById("next-slide").href = `oefening.html?id=${exerciseId}&slide=${Number(slideId) + 1}`;
+
+          document.getElementById("question-title").textContent = exercise.title;
+          document.getElementById("question-title-en").textContent = exercise["title-en"];
+          document.getElementById("question-level").textContent = `Niveau: ${exercise.level}`;
+          document.getElementById("question-level-en").textContent = `Level: ${exercise.level}`;
+          document.getElementById("question-description").innerHTML = exercise.description;
+          document.getElementById("question-description-en").innerHTML = exercise["description-en"];
         } else {
-          document.getElementById("text-title").textContent = "Tekst niet gevonden";
-          document.getElementById("text-content").textContent = "Deze tekst bestaat niet.";
-        }
-
-        if (excercise.slides  && excercise.slides.length > 0) {
-          const slideContainer = document.createElement("div");
-          slideContainer.className = "slide-container"
-
-          const form = document.createElement("form");
-          const userAnswers = [];
-
-          excercise.slides.forEach((s, i) => {
-            const qDiv = document.createElement("div");
-            qDiv.innerHTML = `
-      <p><strong>${i + 1}. ${q.question}</strong></p>
-      ${q.options.map(opt => `
+          /* UPDATE BUTTON */
+          document.getElementById('question-wrapper').innerHTML = `<h1 id="question-title">Vraag niet gevonden!</h1>
+        <h2 id="question-title-en">Question not found!</h2>
+          <div id="question-content"></div>
+          <a class="a-button" href="oefening.html?id=${exerciseId}&slide=${Number(slideId) + 1}" id="next-slide">
+         <h5>Volgende</h5><h6>Next</h6>
+        </a>`
+          const qDiv = document.createElement("div");
+          qDiv.style.paddingBottom = "2rem"
+          qDiv.innerHTML = `
+      <p><strong>Vraag ${Number(slideId) + 1}. ${slide.question}</strong></p>
+      ${slide.options.map(opt => `
         <label>
-          <input type="radio" name="q${i}" value="${opt}" />
+          <input type="radio" name="q${slideId}" value="${opt}" />
           ${opt}
         </label><br/>
       `).join('')}
-      <p class="feedback" id="feedback-${i}" style="display: none;"></p>
+      <p class="feedback" id="feedback-${slideId}" style="display: none;"></p>
     `;
-            form.appendChild(qDiv);
-          });
+          document.getElementById("question-content").appendChild(qDiv);
 
-          const checkBtn = document.createElement("button");
-          checkBtn.textContent = "✅ Controleer antwoorden";
-          checkBtn.type = "button";
-          checkBtn.style.marginTop = "1rem";
-
-          checkBtn.addEventListener("click", () => {
-            let score = 0;
-            text.questions.forEach((q, i) => {
-              const selected = form.querySelector(`input[name="q${i}"]:checked`);
-              const feedback = form.querySelector(`#feedback-${i}`);
-              if (!selected) {
-                feedback.style.display = "block";
-                feedback.style.color = "orange";
-                feedback.textContent = "⚠️ Geen antwoord gekozen.";
-                return;
-              }
-
-              if (selected.value === q.answer) {
-                feedback.style.display = "block";
-                feedback.style.color = "green";
-                feedback.textContent = "✅ Goed!";
-                score++;
-              } else {
-                feedback.style.display = "block";
-                feedback.innerHTML = `<p style="color: red;">❌ Fout. Jouw antwoord: <strong>${selected.value}</strong></p><p style="color: green;">✅ Juiste antwoord: <strong>${q.answer}</strong></p>`;
-              }
-
-            });
-
-            alert(`Je hebt ${score} van de ${text.questions.length} vragen goed.`);
-          });
-
-          form.appendChild(checkBtn);
-          quizContainer.appendChild(form);
-          document.querySelector(".text-main-content").appendChild(quizContainer);
         }
       });
-  </script>-->
+  </script>
 </body>
 
 </html>

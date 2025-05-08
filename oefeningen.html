@@ -50,34 +50,34 @@
     <script>
         const textGrid = document.getElementById("text-grid");
         const levelFilter = document.getElementById("levelFilter");
-        let texts = [];
+        let exercises = [];
 
         function renderExcercises(filter = "all") {
             textGrid.innerHTML = "";
-            texts
-                .filter(text => filter === "all" || text.level === filter)
-                .forEach(text => {
-                    if (text.id) {
+            exercises
+                .filter(exercise => filter === "all" || exercise.level === filter)
+                .forEach(exercise => {
+                    if (exercise.id) {
                         const card = document.createElement("a");
-                        card.href = `oefening.html?id=${text.id}`;
+                        card.href = `oefening.html?id=${exercise.id}&slide=0`;
                         card.className = "text-card";
                         card.innerHTML = `
-            <h3>${text.title}</h3>
-            <h4>${text["title-en"]}</h4>
-            <p class="level">Niveau: ${text.level}</p>
-            <p class="level-en">Level: ${text.level}</p>
-            <p class="description">${text.description}</p>
-            <p class="description-en">${text["description-en"]}</p>
+            <h3>${exercise.title}</h3>
+            <h4>${exercise["title-en"]}</h4>
+            <p class="level">Niveau: ${exercise.level}</p>
+            <p class="level-en">Level: ${exercise.level}</p>
+            <p class="description">${exercise.description}</p>
+            <p class="description-en">${exercise["description-en"]}</p>
           `;
                         textGrid.appendChild(card);
                     }
                 });
         }
 
-        fetch("excercises.json")
+        fetch("exercises.json")
             .then(res => res.json())
             .then(data => {
-                texts = data;
+                exercises = data;
                 renderExcercises();
             });
 

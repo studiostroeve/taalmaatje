@@ -296,7 +296,6 @@ h6 {
 }
 
 #welcome-message {
-  top: 1rem;
   display: grid;
   position: absolute;
   justify-content: center;
@@ -304,6 +303,8 @@ h6 {
   width: 100%;
   font-weight: bold;
   color: #444;
+  height: 3rem;
+  align-items: center;
 }
 
 #latest-text {

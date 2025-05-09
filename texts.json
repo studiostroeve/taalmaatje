@@ -164,15 +164,15 @@
   },
   {
     "id": 3,
-    "title": "🧑 Ik ben Fabian",
-    "title-en": "I am Fabian",
+    "title": "🧑 Ik ben Mark",
+    "title-en": "I am Mark",
     "level": "0",
-    "description": "Een kort verhaal over wie Fabian is.",
-    "description-en": "A short story about who Fabian is.",
-    "content": "Ik ben Fabian. </br>Ik ben 20 jaar oud. </br>Ik wil Nederlands leren. </br>Ik woon 15 jaar in Nederland. </br>Ik houd van sporten.",
+    "description": "Een kort verhaal over wie Mark is.",
+    "description-en": "A short story about who Mark is.",
+    "content": "Ik ben Mark. </br>Ik ben 24 jaar oud. </br>Ik leer Nederlands. </br>Ik woon 3 jaar in Nederland. </br>Ik houd van sporten.",
     "questions": [
       {
-        "question": "Wat wil Fabian leren?",
+        "question": "Wat leert Mark?",
         "options": [
           "Nederlands",
           "Sporten"
@@ -180,13 +180,13 @@
         "answer": "Nederlands"
       },
       {
-        "question": "Hoe oud is Fabian?",
+        "question": "Hoe oud is Mark?",
         "options": [
-          "20 jaar",
-          "15 jaar",
-          "5 jaar"
+          "24 jaar",
+          "21 jaar",
+          "3 jaar"
         ],
-        "answer": "20 jaar"
+        "answer": "24 jaar"
       }
     ],
     "vocabulary": [
@@ -201,6 +201,11 @@
         "note": "from verb <i>zijn</i> (to be)"
       },
       {
+        "word": "Mark",
+        "translation": "Mark",
+        "note": "A name"
+      },
+      {
         "word": "jaar",
         "translation": "year",
         "note": "singular (plural is <i>jaren</i>)"
@@ -211,14 +216,9 @@
         "note": "age-related adjective"
       },
       {
-        "word": "wil",
-        "translation": "want",
-        "note": "from verb <i>willen</i> (to want)"
-      },
-      {
-        "word": "leren",
-        "translation": "to learn",
-        "note": ""
+        "word": "leer",
+        "translation": "learn",
+        "note": "from verb <i>leren</i> (to learn)"
       },
       {
         "word": "Nederlands",
